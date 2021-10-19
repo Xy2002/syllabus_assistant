@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/syallbus_assistant.iml" filepath="$PROJECT_DIR$/.idea/syallbus_assistant.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/syllabus_assistant.iml" filepath="$PROJECT_DIR$/.idea/syllabus_assistant.iml" />
     </modules>
   </component>
 </project>

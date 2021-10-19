@@ -1,0 +1,7 @@
+{
+    "reqOK": "Request successful",
+    "reqFail": "Request failed",
+    "loginOK": "Login successful",
+    "loginFail": "Login failed",
+    "noPermissions": "Insufficient Permissions"
+}
