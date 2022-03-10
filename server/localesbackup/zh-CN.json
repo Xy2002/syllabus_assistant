@@ -1,0 +1,11 @@
+// {
+// 	"reqOK": "请求成功",
+// 	"reqFail": "请求失败",
+// 	"loginOK": "登陆成功",
+// 	"loginFail": "登录失败",
+// 	"noPermissions": "权限不足",
+// 	"registered": "该账号已注册",
+// 	"successful": "成功",
+// 	"wrongAccOrPass": "错误的账号或者密码",
+// 	"unknownToken": "token已失效或无token"
+// }

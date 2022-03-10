@@ -1,36 +1,36 @@
 const mysql = require('mysql')
-const DB_CONFIG = require('../config/dbconf')
-let pool = mysql.createPool(DB_CONFIG)
+
+let pool = mysql.createPool({
+    connectionLimit : 10,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_DB,
+    timezone: 'Asia/Shanghai',
+    dateStrings : true
+})
+
 
 let db = {};
 
-pool.on('connection',function (connection) {
-    console.log(connection)
-})
-
-pool.on('acquire', function (connection) {
-    console.log('Connection %d acquired', connection.threadId);
-});
-
-pool.on('release', function (connection) {
-    console.log('Connection %d released', connection.threadId);
-});
-
-//SELECT * FROM t_user WHERE username = "whg"
-db.find = (query) => {
-    return new Promise((resolve, reject) => {
-        pool.query(query, (err, results, fields) => {
-            if (err) {
-                reject(err);
-            }
-            resolve(results);
-        })
-    })
-}
-
-//'INSERT INTO t_user(username, pass) VALUES(?, ?)'
-//["lalla","bbbb"]
-db.insert = (query, values) => {
+/**
+ * @param query SQL statements
+ * @param values{*[]}
+ * find:
+ * let sql =`SELECT * FROM User WHERE username = ? and password = ?`
+ * let result = await db.query(sql,[username,password])
+ * insert:
+ * let sql = `INSERT INTO User(username,password) VALUES (?,?)`
+ * let result = await db.query(sql,[username,password])
+ * update:
+ * let sql = `UPDATE User SET password = ? WHERE username = ?`
+ * let result = await db.query(sql,[password,username])
+ * delete:
+ * let sql = `DELETE FROM User WHERE username = ?`
+ * let result = await db.query(sql,[username])
+ * @return {Promise<*[]>}
+ */
+db.query = (query, values) => {
     return new Promise((resolve, reject) => {
         pool.query(query, values, (err, results) => {
             if (err) {
@@ -40,30 +40,5 @@ db.insert = (query, values) => {
         })
     })
 }
-
-//'DELETE FROM t_user  WHERE id = 1'
-db.delete = (query) => {
-    return new Promise((resolve, reject) => {
-        pool.query(query, (err, results) => {
-            if (err) {
-                reject(err);
-            }
-            resolve(results);
-        })
-    })
-}
-
-//UPDATE t_user SET pass = "321" WHERE username = "whg"
-db.update = (query) => {
-    return new Promise((resolve, reject) => {
-        pool.query(query, (err, results) => {
-            if (err) {
-                reject(err);
-            }
-            resolve(results);
-        })
-    })
-}
-
 
 module.exports = db;

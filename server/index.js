@@ -7,6 +7,8 @@ const locale = require('koa-locale')
 const i18n = require('koa-i18n')
 const fs = require('fs')
 const router = require('./routes/router.js')
+const {logger, accessLogger} = require('./middlewares/logger');
+require('dotenv').config()
 const errorHandle = require('./middlewares/errorHandle.js'),
     sendHandle = require('./middlewares/sendHandle.js');
 
@@ -23,28 +25,25 @@ app.use(sendHandle());
 app.use(errorHandle);
 app.use(i18n(app, {
     directory: './locales',
-    locales: ['zh-CN', 'en'], //  `zh-CN` defualtLocale, must match the locales to the filenames
+    locales: ['en'], //  `zh-CN` default Locale, must match the locales to the filenames
     modes: [
         'query',                //  optional detect querystring - `/?locale=en-US`
         'subdomain',            //  optional detect subdomain   - `zh-CN.koajs.com`
         'cookie',               //  optional detect cookie      - `Cookie: locale=zh-TW`
         'header',               //  optional detect header      - `Accept-Language: zh-CN,zh;q=0.5`
         'url',                  //  optional detect url         - `/en`
-        'tld',                  //  optional detect tld(the last domain) - `koajs.cn`
     ]
 }))
-
+app.use(accessLogger())
 app.use(router.routes())
 app.use(router.allowedMethods())
-
-app.listen(20000, () => {
-    console.log("http server running success at 20000");
+app.on('error', err => {
+    logger.error(err)
+})
+app.listen(3000, () => {
+    console.log("http server running success at 3000");
 })
 
-// https.createServer(options, app.callback()).listen(20001, () => {
-//     console.log("server running success at 20001")
-// });
-
-http2.createSecureServer(options, app.callback()).listen(20001, () => {
-    console.log("http2 server running success at 20001")
-})
+// http2.createSecureServer(options, app.callback()).listen(3000, () => {
+//     console.log("http2 server running success at 3000")
+// })

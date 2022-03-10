@@ -1,0 +1,11 @@
+// {
+//     "reqOK": "Request successful",
+//     "reqFail": "Request failed",
+//     "loginOK": "Login successful",
+//     "loginFail": "Login failed",
+//     "noPermissions": "Insufficient Permissions",
+//     "registered": "This account is registered",
+//     "successful": "successful",
+//     "wrongAccOrPass": "Wrong account or password",
+//     "unknownToken": "token is invalid or no token"
+// }

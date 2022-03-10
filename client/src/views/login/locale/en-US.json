@@ -1,0 +1,13 @@
+{
+  "login.form.forgetPassword": "Forgot password",
+  "login.form.login": "Log in",
+  "login.form.login.errMsg": "Login error",
+  "login.form.login.success": "welcome",
+  "login.form.password.errMsg": "password can not be blank",
+  "login.form.password.placeholder": "password",
+  "login.form.register": "Register an account",
+  "login.form.rememberPassword": "remember password",
+  "login.form.title": "Sign in to Syllabus Assistant",
+  "login.form.userName.errMsg": "The account number cannot be empty, and only student numbers with 9 to 10 digits are supported",
+  "login.form.userName.placeholder": "account"
+}

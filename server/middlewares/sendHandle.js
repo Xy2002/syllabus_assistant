@@ -1,9 +1,9 @@
 const sendHandle = () => {
     const render = ctx => {
-        return (detail, desc = ctx.i18n.__('reqOK')) => {
+        return (detail, desc = 'Request successful') => {
             ctx.set('Content-Type', 'application/json');
             ctx.body = {
-                code: '200',
+                code: 200,
                 detail,
                 desc
             }
@@ -11,24 +11,22 @@ const sendHandle = () => {
     }
 
     const loginRender = ctx => {
-        return (token, desc = ctx.i18n.__('loginOK')) => {
+        return (token, desc = 'Login Successful') => {
             ctx.set('Content-Type', 'application/json');
             // day x hour x min x sec x ms
-            ctx.cookies.set('jwt',token,{
-                maxAge:  60 * 60 * 1000
-            })
             ctx.body = {
                 code: 200,
-                desc
+                desc,
+                token
             }
         }
     }
 
     const loginRenderError = ctx => {
-        return (code,desc=ctx.i18n.__('loginFail'),reason)=>{
+        return (reason = ctx.i18n.__('wrongAccOrPass'), desc = ctx.i18n.__('loginFail')) => {
             ctx.set('Content-Type', 'application/json');
             ctx.body = {
-                code,
+                code: '000003',
                 desc,
                 reason
             }
@@ -36,7 +34,7 @@ const sendHandle = () => {
     }
 
     const renderError = ctx => {
-        return (code, desc = ctx.i18n.__('reqFail'),reason) => {
+        return (code, reason, desc = ctx.i18n.__('reqFail')) => {
             ctx.set('Content-Type', 'application/json');
             ctx.body = {
                 code,

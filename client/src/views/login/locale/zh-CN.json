@@ -1,0 +1,13 @@
+{
+  "login.form.forgetPassword": "忘记密码",
+  "login.form.login": "登陆",
+  "login.form.login.errMsg": "登录出错",
+  "login.form.login.success": "欢迎使用",
+  "login.form.password.errMsg": "密码不能为空",
+  "login.form.password.placeholder": "密码",
+  "login.form.register": "注册账号",
+  "login.form.rememberPassword": "记住密码",
+  "login.form.title": "登录 Syllabus Assistant",
+  "login.form.userName.errMsg": "账号不能为空，且只支持9到10位的学号",
+  "login.form.userName.placeholder": "账号"
+}
